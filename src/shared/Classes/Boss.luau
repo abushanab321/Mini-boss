@@ -1,4 +1,5 @@
 local ServerStorage = game:GetService("ServerStorage")
+local ExplosionClass = require(script.Parent.Explosion)
 
 local ANIMATIONS = {
 	Idle = "rbxassetid://70920809541955",
@@ -82,7 +83,9 @@ function Boss:Attack(Position)
 
 	Track:Play(0.1)
 	Track:GetMarkerReachedSignal("Impact"):Once(function()
-		
+		task.wait(0.22)
+		local Explostion = ExplosionClass.NewExplosion(5)
+		Explostion:Explode(Position)
 	end)
 end
 
